@@ -26,9 +26,15 @@ jobs:
         python -m pip install --upgrade pip
         pip install -r requirements.txt
 
-    - name: Run tests
+    - name: Run Tests
       run: |
-        pytest --disable-warnings
+        # Activate virtual environment if using one
+        # If using a virtual environment, you can create and activate it
+        python -m venv venv
+        source venv/bin/activate  # For Unix/Linux
+        # or for Windows use:
+        # venv\Scripts\activate
+        python -m pytest --disable-warnings
 
   terraform-check:
     runs-on: ubuntu-latest
