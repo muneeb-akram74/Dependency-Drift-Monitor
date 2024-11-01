@@ -25,15 +25,20 @@ jobs:
       run: |
         python -m pip install --upgrade pip
         pip install -r requirements.txt
+    
+    - name: Create and activate virtual environment
+      run: |
+        python -m venv venv  # Create a virtual environment
+        source venv/bin/activate  # Activate the virtual environment
+
+    - name: Install dependencies in virtual environment
+      run: |
+        source venv/bin/activate  # Activate the virtual environment
+        pip install -r requirements.txt
 
     - name: Run Tests
       run: |
-        # Activate virtual environment if using one
-        # If using a virtual environment, you can create and activate it
-        python -m venv venv
-        # source venv/bin/activate  # For Unix/Linux
-        # or for Windows use:
-        iac_drift_monitor_env\Scripts\Activate.ps1
+        source venv/bin/activate  # Activate the virtual environment
         python -m pytest --disable-warnings
 
   terraform-check:
