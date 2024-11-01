@@ -1,0 +1,11 @@
+{
+    "web_server": {
+      "current": "3.0.0",
+      "expected": "3.0.0"
+    },
+    "database": {
+      "current": "3.10.0",
+      "expected": "3.10.0" 
+    }
+  }
+  

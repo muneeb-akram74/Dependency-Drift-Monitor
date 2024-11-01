@@ -1,0 +1,37 @@
+name: Dependency Drift Monitor
+
+on:
+  schedule:
+    - cron: '0 0 * * *'  # This runs daily at midnight UTC
+  workflow_dispatch:  # Allows manual triggering of the workflow
+
+jobs:
+  drift-check:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.x'
+
+      - name: Install dependencies
+        run: |
+          python -m venv iac_drift_monitor_env
+          source iac_drift_monitor_env/bin/activate
+          pip install -r requirements.txt  # Ensure your requirements file is up to date
+
+      - name: Run Drift Detection
+        run: |
+          source iac_drift_monitor_env/bin/activate
+          python main.py
+
+      - name: Archive Report (Optional)
+        if: success()
+        uses: actions/upload-artifact@v2
+        with:
+          name: drift-report
+          path: drift_reports.db
