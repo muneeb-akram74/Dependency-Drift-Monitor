@@ -4,5 +4,5 @@ module "web_server" {
 }
 module "database" {
     source  = "terraform-aws-modules/rds/aws"
-    version = "3.20.0"  
+    version = "6.10.0"  
 }
