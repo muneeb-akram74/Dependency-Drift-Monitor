@@ -33,7 +33,7 @@ jobs:
         python -m venv venv
         # source venv/bin/activate  # For Unix/Linux
         # or for Windows use:
-        iac_drift_monitor_env\Scripts\activate.bat
+        iac_drift_monitor_env\Scripts\activate.ps1
         python -m pytest --disable-warnings
 
   terraform-check:
