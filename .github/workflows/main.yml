@@ -11,7 +11,7 @@ on:
 jobs:
   build-and-test:
     runs-on: ubuntu-latest
-    
+
     steps:
     - name: Checkout code
       uses: actions/checkout@v2
@@ -19,7 +19,7 @@ jobs:
     - name: Set up Python
       uses: actions/setup-python@v2
       with:
-        python-version: '3.x'  # Specify your Python version
+        python-version: '3.x'
 
     - name: Install dependencies
       run: |
@@ -28,8 +28,8 @@ jobs:
 
     - name: Run tests
       run: |
-        pytest  # or your preferred test runner and flags
-    
+        pytest --disable-warnings
+
   terraform-check:
     runs-on: ubuntu-latest
     needs: build-and-test

@@ -2,8 +2,8 @@ name: Dependency Drift Monitor
 
 on:
   schedule:
-    - cron: '0 0 * * *'  # This runs daily at midnight UTC
-  workflow_dispatch:  # Allows manual triggering of the workflow
+    - cron: '0 0 * * *'  # Runs daily at midnight UTC
+  workflow_dispatch:  # Allows manual trigger
 
 jobs:
   drift-check:
@@ -20,13 +20,11 @@ jobs:
 
       - name: Install dependencies
         run: |
-          python -m venv iac_drift_monitor_env
-          source iac_drift_monitor_env/bin/activate
-          pip install -r requirements.txt  # Ensure your requirements file is up to date
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
 
       - name: Run Drift Detection
         run: |
-          source iac_drift_monitor_env/bin/activate
           python main.py
 
       - name: Archive Report (Optional)
