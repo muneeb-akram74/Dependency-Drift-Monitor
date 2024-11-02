@@ -30,11 +30,14 @@ To get started with the Dependency Drift Monitor, follow these steps:
    cd dependency-drift-monitor
 
 2. **Set up a Python virtual environment (optional but recommended)**:
-    python -m venv venv
-    source venv/bin/activate # On Windows use venv\Scripts\activate (sometimes activate.bat or activate.ps1 works for windows)    
+   ```bash
+   python -m venv venv
+   source venv/bin/activate  # On Windows use venv\Scripts\activate
+
 
 3. **Install dependencies**:
-    pip install -r requirements.txt
+    ```bash
+   pip install -r requirements.txt
 
 
 ## Usage
@@ -77,6 +80,7 @@ docker run --name drift-monitor-container -d \
   --alert-method email \
   --to-email your-email@example.com
 
+
 ## if you are using VS code powershell use
 
 docker run --name drift-monitor-container -d `
@@ -103,11 +107,11 @@ This project is licensed under the MIT License. See the LICENSE file for details
 
 Contributions are welcome! If you'd like to contribute:
 
-    -Please see the CONTRIBUTING.md file for guidelines on how to contribute to this project.
+-Please see the CONTRIBUTING.md file for guidelines on how to contribute to this project.
 
-    -Please fork the repository and create a pull request. You can also submit issues for any bugs or feature requests.
+-Please fork the repository and create a pull request. You can also submit issues for any bugs or feature requests.
 
-    -For larger contributions, please consider discussing your changes before submitting a pull request to ensure they align with the project's goals.
+-For larger contributions, please consider discussing your changes before submitting a pull request to ensure they align with the project's goals.
 
 
 ## Code of Conduct
