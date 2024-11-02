@@ -1,6 +1,6 @@
 import sqlite3
 
-def create_drift_table(db_name="drift_reports.db"):
+def initialize_database(db_name="drift_reports.db"):
     conn = sqlite3.connect(db_name)
     cursor = conn.cursor()
     cursor.execute("""
@@ -15,11 +15,13 @@ def create_drift_table(db_name="drift_reports.db"):
     conn.commit()
     conn.close()
 
-def save_drift_report(drift_data, db_name="drift_reports.db"):
-    conn = sqlite3.connect(db_name)
+def save_drift_report(drift):
+    # Call initialize_database to ensure table creation
+    initialize_database()
+    conn = sqlite3.connect('drift_reports.db')
     cursor = conn.cursor()
-    for dep, versions in drift_data.items():
+    for dependency, versions in drift.items():
         cursor.execute("INSERT INTO DriftReport (dependency, current_version, expected_version) VALUES (?, ?, ?)",
-                       (dep, versions["current"], versions["expected"]))
+                       (dependency, versions['current'], versions['expected']))
     conn.commit()
     conn.close()
