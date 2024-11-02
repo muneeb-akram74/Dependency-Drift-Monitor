@@ -1,3 +1,4 @@
+```markdown
 # Dependency Drift Monitor
 
 ## Overview
@@ -64,38 +65,38 @@ To configure email alerts, you need to set the following environment variables:
 - `SMTP_SERVER`: The SMTP server address (e.g., smtp.gmail.com for Gmail).
 
 
-## Example of running in Docker
+1. **Example of running in Docker**:
+   ```bash
+   docker run --name drift-monitor-container -d \
+   -v "C:\path\to\sample_file.tf:/app/sample_file.tf" \
+   -v "C:\path\to\baseline.json:/app/baseline.json" \
+   --env SMTP_EMAIL='your-email@example.com' \
+   --env SMTP_PASSWORD='your-email-password' \
+   --env SMTP_PORT='587' \
+   --env SMTP_SERVER='smtp.gmail.com' \
+   drift-monitor-image \
+   python main.py \
+   --terraform-file /app/sample_file.tf \
+   --baseline-file /app/baseline.json \
+   --alert-method email \
+   --to-email your-email@example.com
 
-docker run --name drift-monitor-container -d \
-  -v "C:\path\to\sample_file.tf:/app/sample_file.tf" \
-  -v "C:\path\to\baseline.json:/app/baseline.json" \
-  --env SMTP_EMAIL='your-email@example.com' \
-  --env SMTP_PASSWORD='your-email-password' \
-  --env SMTP_PORT='587' \
-  --env SMTP_SERVER='smtp.gmail.com' \
-  drift-monitor-image \
-  python main.py \
-  --terraform-file /app/sample_file.tf \
-  --baseline-file /app/baseline.json \
-  --alert-method email \
-  --to-email your-email@example.com
 
-
-## if you are using VS code powershell use
-
-docker run --name drift-monitor-container -d `
-  -v "C:\path\to\sample_file.tf:/app/sample_file.tf" `
-  -v "C:\path\to\baseline.json:/app/baseline.json" `
-  --env SMTP_EMAIL="your-email@example.com" `
-  --env SMTP_PASSWORD="your-email-password" `
-  --env SMTP_PORT="587" `
-  --env SMTP_SERVER="smtp.gmail.com" `
-  drift-monitor-image `
-  python main.py `
-  --terraform-file /app/sample_file.tf `
-  --baseline-file /app/baseline.json `
-  --alert-method email `
-  --to-email "your-email@example.com"
+2. **if you are using VS code powershell use**:
+   ```base
+   docker run --name drift-monitor-container -d `
+   -v "C:\path\to\sample_file.tf:/app/sample_file.tf" `
+   -v "C:\path\to\baseline.json:/app/baseline.json" `
+   --env SMTP_EMAIL="your-email@example.com" `
+   --env SMTP_PASSWORD="your-email-password" `
+   --env SMTP_PORT="587" `
+   --env SMTP_SERVER="smtp.gmail.com" `
+   drift-monitor-image `
+   python main.py `
+   --terraform-file /app/sample_file.tf `
+   --baseline-file /app/baseline.json `
+   --alert-method email `
+   --to-email "your-email@example.com"
 
 
 ## License
